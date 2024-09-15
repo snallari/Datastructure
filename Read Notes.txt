@@ -1,0 +1,4 @@
+React uses camel cases for event handling-onClick, onFocus, onChange
+//Map doesnt change the original array
+//Map gives only the special attributes of arrays
+//2 arrays unte includes and every

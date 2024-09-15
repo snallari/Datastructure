@@ -1,0 +1,1 @@
+console.log("its a object",typeof a)

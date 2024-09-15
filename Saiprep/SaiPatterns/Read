@@ -1,0 +1,22 @@
+Git works: Cloud based 
+follow or use the code
+ls -la (list all items)
+.git - is the git repo
+git init- initialises the git
+git clone- does it
+git  add- When it is modified
+git  commit - commits
+git push- pushes
+git fetch- fetched all the data
+git checkout- checksout new branch
+git status: Gives the status of the local
+git checkout -b - creates new branch and checksout
+git branch creates a new branch
+git remote -v checks if it moved to remote
+git remote add origin "url"(It adds to remote)
+git pull
+.git - helps to keep track of all folders
+
+
+Workflow: Is a process
+
