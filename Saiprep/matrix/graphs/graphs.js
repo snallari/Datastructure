@@ -3,6 +3,12 @@
 //Next, left, right would not work
 //Adjacany matrix (2 d array), adjacency list
 //Adjancey list is easy for insert and delete
+//Transveral
+//BFS: 2 terms visited, explored same as level order trees
+// It can be done using queues
+
+//DFS:IT uses stack
+//
 class Graphs {
     constructor() {
         this.adjancencyList = {}
@@ -32,16 +38,65 @@ class Graphs {
         });
         delete this.adjancencyList[v]
     }
+
+    dfs(v){
+        const stack=[v]
+        const result=[]
+        const visited={}
+        let currentVertex;
+        visited[v]=true
+        while(stack.length){
+            console.log("stack", stack)
+            currentVertex=stack.pop()
+            console.log("currentdfs", visited)
+            this.adjancencyList[currentVertex].forEach((n)=>{
+                if(!visited[n]){
+                    visited[n]=true
+                    stack.push(n)
+                }
+            })
+        }
+    }
+
+    bfs(v){
+        const queue=[v]
+        const visited=[]
+        let currentVertex;
+        visited.push(v)
+        while(queue.length){
+            console.log("q",queue)
+            currentVertex=queue.pop()
+            console.log("current", visited)
+            this.adjancencyList[currentVertex].forEach((n)=>{
+                if(!visited[n]){
+                    visited.push(n)
+                    queue.push(n)
+                }
+            })
+        }
+    }
 }
 
 
 let graph = new Graphs()
-graph.addVertex("dallas")
-graph.addVertex("tokyo")
-graph.addVertex("aspen")
-graph.addEdge("dallas", "tokyo")
-graph.addEdge("dallas", "aspen")
-console.log("sai", graph.removeEdge("dallas", "aspen"))
+graph.addVertex(1)
+graph.addVertex(2)
+graph.addVertex(3)
+graph.addVertex(4)
+graph.addVertex(5)
+graph.addVertex(6)
+graph.addVertex(7)
+graph.addEdge(1,2)
+graph.addEdge(2,3)
+graph.addEdge(3,4)
+graph.addEdge(1,3)
+graph.addEdge(4,5)
+graph.addEdge(3,5)
+graph.addEdge(5,6)
+graph.addEdge(5,7)
+graph.dfs(1)
+graph.bfs(1)
+//console.log("sai", graph.removeEdge("D", "A"))
 // console.log("sai", graph.removeEdge("dallas", "tokyo"))
 //graph.removeVertex("dallas")
-console.log("graph", graph)
+// console.log("graph", graph.adjancencyList)
