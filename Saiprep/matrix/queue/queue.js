@@ -9,7 +9,7 @@ class QNode {
     }
 }
 
-class Queue {
+export class Queue {
     constructor() {
         this.first = null
         this.last = null

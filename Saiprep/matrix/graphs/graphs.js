@@ -8,7 +8,7 @@
 // It can be done using queues
 
 //DFS:IT uses stack
-//
+//go to each vertex make                                                                                          
 class Graphs {
     constructor() {
         this.adjancencyList = {}
@@ -40,10 +40,11 @@ class Graphs {
     }
 
     dfs(v){
-        const stack=[v]
+        const stack=[]
         const result=[]
         const visited={}
         let currentVertex;
+        stack.push(v)
         visited[v]=true
         while(stack.length){
             console.log("stack", stack)
@@ -59,17 +60,19 @@ class Graphs {
     }
 
     bfs(v){
-        const queue=[v]
-        const visited=[]
+        const queue=[]
+        const visited={}
         let currentVertex;
-        visited.push(v)
+        visited[v]=true
+        queue.push(v)
         while(queue.length){
-            console.log("q",queue)
-            currentVertex=queue.pop()
+            console.log("q", queue)
+            currentVertex=queue.shift()
             console.log("current", visited)
             this.adjancencyList[currentVertex].forEach((n)=>{
+                console.log(visited[n],n)
                 if(!visited[n]){
-                    visited.push(n)
+                    visited[n]=true
                     queue.push(n)
                 }
             })
