@@ -1,48 +1,66 @@
 //Object and hashmaps 
 //Hashtable is a key value data store
 
-class Hashtable{
-    constructor(size){
-        this.dataMap=new Array(size)
+class Hashtable {
+    constructor() {
+        this.dataMap = []
     }
-    _hash(key){
-        let hash=0
-        for(let i=0; i<key.length; i++){
-            hash=(hash+key.charCodeAt(i))%23
+    _hash(key) {
+        let hash = 0;
+        for (let i = 0; i < key.length; i++) {
+            hash = (hash + key.charCodeAt(i)) % 2
         }
         return hash
     }
-    set(key, value){
-        let index=this._hash(key)
-        console.log("index", index)
-        if(!this.dataMap[index]){
-            this.dataMap[index]=[]
+    setHash(key, value) {
+        console.log("hash", this.dataMap)
+        let index = this._hash(key)
+        if (!this.dataMap[index]) {
+            this.dataMap[index] = []
         }
-        this.dataMap[index].push([key,value])
-        return this
+        this.dataMap[index].push(key, value)
     }
-    get(key){
-        let index=this._hash(key)
-        if(this.dataMap[index]){
-            for(let i=0; i<this.dataMap[index].length; i++){
-                if(this.dataMap[index][i][0]==key){
-                    return this.dataMap[index][i][1]
+    getHash(key) {
+        let index = this._hash(key)
+        if (this.dataMap[index]) {
+            for (let i = 0; i < this.dataMap[index].length; i++) {
+                if (this.dataMap[index][0] == key) {
+                    return this.dataMap[index][i]
                 }
             }
         }
     }
-    search(value) {
-        const index = this._hash(value)
-        if (this.dataMap[index] == value)
-            console.log("The value is found at index : ", index);
-        else
-            console.log("Not found");
+
+    getKeys() {
+        let keys=[]
+        for (let index = 0; index < this.dataMap.length; index++) {
+            if (this.dataMap[index] !== undefined) {
+                for (let i = 0; i < this.dataMap[index].length; i++) {
+                    keys.push(this.dataMap[index][0])
+                }
+            }
+        }
+        return keys
     }
- 
+
+    getValues() {
+        let values=[]
+        for (let index = 0; index < this.dataMap.length; index++) {
+            if (this.dataMap[index] !== undefined) {
+                for (let i = 0; i < this.dataMap[index].length; i++) {
+                    values.push(this.dataMap[index][1])
+                }
+            }
+        }
+        return values
+    }
+
 }
-let hash=new Hashtable()
-hash.set("sai", "apple")
-hash.set("ram", "boy")
-console.log(hash.get("ram"))
-console.log(hash.search("sai"))
+let hash = new Hashtable()
+hash.setHash("sai", "apple")
+hash.setHash("ram", "boy")
+console.log(hash.getHash("ram"))
+console.log(hash.getKeys())
+console.log(hash.getValues())
+
 console.log(hash)
