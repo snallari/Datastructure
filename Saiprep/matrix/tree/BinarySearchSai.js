@@ -181,7 +181,7 @@ class BSTSai {
     bfsq() {
         let current, qdel, arrFinal = []
         current = this.root
-        let q=new Queue()
+        let q = new Queue()
         q.enqueue(current) //q=[10n]
         while (q.size) {
             qdel = q.dequeue() //[20n]
@@ -197,7 +197,35 @@ class BSTSai {
         return arrFinal
     }
 
+    findTheClosest(tree,target) {
+        let currentNode, closest, prev, curr
+        currentNode = this.root
+        while (currentNode.data !== null) {
+            if(target==currentNode.data){
+                return console.log("found", currentNode)
+            }
+            else if (target<currentNode.data) {
+                prev = currentNode.data
+                if (currentNode.left !== null) {
+                    currentNode = currentNode.left
+                    curr = currentNode.data
+                }
+                console.log("tree right", curr, prev, closest)
+                closest = (Math.abs(curr - target) < Math.abs(prev - target) ? curr : prev);
+            } else {
+                prev = currentNode.data
+                if (currentNode.right !== null) {
+                    currentNode = currentNode.right
+                    curr = currentNode.data
+                }
+                console.log("tree left", curr, prev, closest)
+                closest = (Math.abs(curr - target) < Math.abs(prev - target) ? curr : prev);
+            }
+            console.log("tree", curr, prev, closest)
+        }
 
+
+    }
 }
 
 var tree = new BSTSai()
@@ -210,6 +238,7 @@ tree.insert(8)
 tree.insert(20)
 console.log("tree", tree)
 console.log("bfs tree", tree.bfsq())
+console.log("findtheclosest", tree.findTheClosest(10, 15))
 //console.log("bfs tree", tree.printLevelOrder(tree.root))
 // console.log("pre tree", tree.preSaiorder())
 // console.log("post tree", tree.postSaiorder(tree.root))

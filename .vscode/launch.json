@@ -11,7 +11,7 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}/Saiprep/matrix/graphs/graphs.js"
+            "program": "${workspaceFolder}/Saiprep/matrix/tree/BinarySearchSai.js"
         }
     ]
 }
