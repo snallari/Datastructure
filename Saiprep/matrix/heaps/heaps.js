@@ -10,7 +10,7 @@
 
 class Heaps {
     constructor() {
-        this.values = [41, 39, 33, 18, 27, 12]
+        this.values = [10]
     }
 
     insert(element) {
@@ -33,9 +33,18 @@ class Heaps {
         this.values[b] = temp
         return this.values
     }
+//Only can delete highest priority element
+    delete(){
+
+    }
 }
 
 var heap = new Heaps()
-console.log(heap.insert(55))
-console.log(heap.insert(101))
-console.log(heap.insert(21))
+console.log(heap.insert(20))
+console.log(heap.insert(30))
+console.log(heap.insert(25))
+console.log(heap.insert(5))
+console.log(heap.insert(40))
+console.log(heap.insert(35))
+// console.log(heap.insert(101))
+// console.log(heap.insert(21))
