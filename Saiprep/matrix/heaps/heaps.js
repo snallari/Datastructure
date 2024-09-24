@@ -35,12 +35,12 @@ class Heaps {
     }
     //Only can delete highest priority element
     delete() {
-        let replace="", extract=""
+        let replace = "", extract = ""
         replace = this.values.pop()
         extract = this.values[0]
         this.values[0] = replace
         this.heapifyDown()
-        console.log("values", this.values)
+        return extract
     }
 
     heapifyDown() {
@@ -59,17 +59,19 @@ class Heaps {
             }
             if (ridx < length) {
                 r = this.values[ridx]
-                if ((r > element && swap==null) || (swap!==null && r>l) ) {
+                if ((r > element && swap == null) || (swap !== null && r > l)) {
                     swap = ridx
                 }
             }
-            if(swap==null)break
-            this.values[idx]=this.values[swap]
-            this.values[swap]=element
-            idx=swap
+            if (swap == null) break
+            this.values[idx] = this.values[swap]
+            this.values[swap] = element
+            idx = swap
+            swap=null
+            console.log("values", this.values);
         }
-        console.log("values", this.values);
         
+
     }
 }
 
