@@ -11,6 +11,7 @@
 class Heaps {
     constructor() {
         this.values = [10]
+        this.newValues=[]
     }
 
     insert(element) {
@@ -35,12 +36,13 @@ class Heaps {
     }
     //Only can delete highest priority element
     delete() {
-        let replace = "", extract = ""
+        let replace = "", extract = "", newValues=[]
         replace = this.values.pop()
         extract = this.values[0]
         this.values[0] = replace
         this.heapifyDown()
-        return extract
+        this.newValues.push(extract)
+        return this.newValues
     }
 
     heapifyDown() {
@@ -48,7 +50,7 @@ class Heaps {
         const length = this.values.length
         const element = this.values[0]
         let lidx, ridx, l, r, swap
-        while (true) {
+        while (idx<length) {
             lidx = 2 * idx + 1
             ridx = 2 * idx + 2
             if (lidx < length) {
@@ -68,7 +70,7 @@ class Heaps {
             this.values[swap] = element
             idx = swap
             swap=null
-            console.log("values", this.values);
+            console.log("values", this.values, idx);
         }
         
 
@@ -82,6 +84,13 @@ console.log(heap.insert(25))
 console.log(heap.insert(5))
 console.log(heap.insert(40))
 console.log(heap.insert(35))
-console.log(heap.delete())
+console.log("d",heap.delete())
+console.log("d",heap.delete())
+console.log("d",heap.delete())
+console.log("d",heap.delete())
+console.log("d",heap.delete())
+console.log("d",heap.delete())
+
+
 // console.log(heap.insert(101))
 // console.log(heap.insert(21))
