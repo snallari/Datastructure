@@ -11,7 +11,7 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}/Saiprep/matrix/heaps/heaps.js"
+            "program": "${workspaceFolder}/Saiprep/core-dsa/graphs/weightedGraphs.js"
         }
     ]
 }

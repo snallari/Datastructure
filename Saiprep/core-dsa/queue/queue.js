@@ -43,7 +43,6 @@ export class Queue {
         return del.data;
     }
 }
-
 var q = new Queue()
 q.enqueue(10)
 q.enqueue(11)
@@ -56,4 +55,5 @@ q.dequeue()
 q.dequeue()
 q.dequeue()
 console.log("q", q)
+
 
