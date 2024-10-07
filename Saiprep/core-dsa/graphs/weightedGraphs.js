@@ -74,11 +74,11 @@ class WeightedGraph {
         while (queue.size > 1) {
             currentNode = queue.dequeue()
             //dequeue getting the last
-            console.log("currentnode",currentNode)
+            console.log("currentnode", currentNode)
             if (currentNode == end) {
-                while(previous[currentNode]){
+                while (previous[currentNode]) {
                     path.push(currentNode)
-                    currentNode=previous[currentNode]
+                    currentNode = previous[currentNode]
                 }
                 console.log("path", path)
                 break;
@@ -105,11 +105,6 @@ class WeightedGraph {
         console.log("path", path, currentNode, path.concat(currentNode).reverse())
         return path.concat(currentNode).reverse()
     }
-
-
-
-
-
 }
 
 
@@ -121,10 +116,14 @@ weight.addVertex("D")
 weight.addVertex("E")
 weight.addVertex("F")
 weight.addEdge("A", "B", 4)
-weight.addEdge("B", "C", 2)
-weight.addEdge("C", "D", 3)
-weight.addEdge("D", "E", 1)
+weight.addEdge("A", "C", 2)
+weight.addEdge("B", "E", 3)
+weight.addEdge("C", "D", 2)
+weight.addEdge("C", "F", 4)
+weight.addEdge("D", "E", 3)
+weight.addEdge("D", "F", 1)
 weight.addEdge("E", "F", 1)
-weight.addEdge("F", "E", 2)
-weight.dijkstras("A", "F")
-console.log("graph", weight.dijkstras("A","F"))
+
+
+weight.dijkstras("A", "E")
+console.log("graph", weight.dijkstras("A", "F"))
