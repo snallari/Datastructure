@@ -102,7 +102,7 @@ class WeightedGraph {
                 }
             }
         }
-        console.log("path", path, currentNode, path.concat(currentNode).reverse())
+        console.log("path", path, currentNode, path.concat(currentNode).reverse(), distances)
         return path.concat(currentNode).reverse()
     }
 }
@@ -125,5 +125,5 @@ weight.addEdge("D", "F", 1)
 weight.addEdge("E", "F", 1)
 
 
-weight.dijkstras("A", "E")
+weight.dijkstras("A", "F")
 console.log("graph", weight.dijkstras("A", "F"))
