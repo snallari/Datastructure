@@ -43,7 +43,8 @@ class Heaps {
         extract = this.values[0]
         this.values[0] = replace
         this.heapifyDown()
-        return extract
+        this.newValues.push(extract)
+        return this.newValues
     }
 
     heapifyDown() {
