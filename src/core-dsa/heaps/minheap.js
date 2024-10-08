@@ -22,7 +22,7 @@ class Heaps {
         idx = this.values.length - 1
         while (idx > 0) {
             median = Math.floor(idx / 2)
-            if (this.values[idx] > this.values[median]) {
+            if (this.values[idx] < this.values[median]) {
                 this.swap(median, idx)
             }
             idx = median
@@ -43,8 +43,7 @@ class Heaps {
         extract = this.values[0]
         this.values[0] = replace
         this.heapifyDown()
-        this.newValues.push(extract)
-        return this.newValues
+        return extract
     }
 
     heapifyDown() {
@@ -57,13 +56,13 @@ class Heaps {
             ridx = 2 * idx + 2
             if (lidx < length) {
                 l = this.values[lidx]
-                if (l > element) {
+                if (l < element) {
                     swap = lidx
                 }
             }
             if (ridx < length) {
                 r = this.values[ridx]
-                if ((r > element && swap == null) || (swap !== null && r > l)) {
+                if ((r < element && swap == null) || (swap !== null && r < l)) {
                     swap = ridx
                 }
             }
