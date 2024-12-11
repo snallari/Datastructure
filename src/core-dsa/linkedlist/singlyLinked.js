@@ -220,7 +220,7 @@ class SinglyLinkedList {
         }
     }
 
-    remove(index) {
+    remove(index,vals) {
         //If you want to remove between 2 nodes, take the reference of the delete-1 node, delete node, delete nextNode.  so we can set delete-1.next=delete+1. 
         //That way we dont loose the reference
         let current, prev, deleteNode, deleteNodeReplace
@@ -233,7 +233,7 @@ class SinglyLinkedList {
             list.pop()
         } else {
             current = this.head
-            var previous = list.getIndex(["shr", "dad", "mum", "thatha", "amma", "sami"], index - 1)
+            var previous = list.getIndex(vals, index - 1)
             console.log("search", previous)
             while (current) {
                 //console.log("current",current.node, previous)
@@ -339,14 +339,27 @@ class SinglyLinkedList {
     //     console.log("newNode",newNode)
     //}
 
+    removeDuplicates(){
+        let current
+        current=this.head
+        while(current){
+            if(current==current.nextNode){
+                this.remove(current,[1,1,3,4,4,4,5,6,6])
+            }else{
+                current=current.nextNode
+            }
+        }
+    }
+
 
 }
 let list = new SinglyLinkedList()
-list.pushABunch([4, 10, 11, 3, 8], list)
+list.pushABunch([1,1,3,4,4,4,5,6,6], list)
 let listB = new SinglyLinkedList()
 listB.pushABunch([2, 5, 12, 14, 16], listB)
+listB.removeDuplicates()
 //console.log(list, listB)
-list.merge(list, listB)
+//list.merge(list, listB)
 console.log("list", list)
 //console.log("list",list.isSorted())
 // list.push(1)

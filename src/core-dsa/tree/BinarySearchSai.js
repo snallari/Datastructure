@@ -73,9 +73,18 @@ class BSTSai {
         this.root.left = new TNode(2)
         this.root.right = new TNode(3)
         this.root.left.left = new TNode(4)
+        this.root.left.left.left = new TNode(8)
+        this.root.left.left.right = new TNode(9)
         this.root.left.right = new TNode(5)
+        this.root.right.right = new TNode(6)
+        this.root.right.left = new TNode(7)
     }
 
+    insertBulk(arr){
+        arr.forEach(e => {
+            this.insert(e)
+        });
+    }
     insert(data) {
         let currentL = 0, currentR = 0, current
         let newNode = new TNode(data)
@@ -142,13 +151,13 @@ class BSTSai {
         console.log("arr", arr)
     }
 
-    inSaiorder(node) {
-        if (node != null) {
-            this.inSaiorder(node.left)
-            this.inArr.push(node.data)
-            this.inSaiorder(node.right)
+    inSaiorder(current) {
+        if (current !== null) {
+            if(current.left)this.inSaiorder(current.left)
+            if(current.data){this.inArr.push(current.data)}
+            if(current.right)this.inSaiorder(current.right)
         }
-        return this.inArr
+        return this.inArr;
     }
 
     postSaiorder(current) {
@@ -178,6 +187,25 @@ class BSTSai {
         return arrFinal
     }
 
+    nodeDept(){
+        let arr = [], current, qdel, arrFinal = [], leftDepth=0, rightDepth=0
+        current = this.root
+        arr.push(current)
+        while (arr.length) {
+            qdel = arr.pop()
+            console.log("value",leftDepth++, qdel)
+            arrFinal.push(qdel.data)
+            if (qdel.left) {
+                arr.push(qdel.left)
+            }
+            if (qdel.right) {
+                arr.push(qdel.right)
+            }
+        }
+        console.log("arra")
+        return leftDepth+rightDepth
+    }
+
     bfsq() {
         let current, qdel, arrFinal = []
         current = this.root
@@ -197,48 +225,66 @@ class BSTSai {
         return arrFinal
     }
 
-    findTheClosest(tree,target) {
-        let currentNode, closest, prev, curr
-        currentNode = this.root
-        while (currentNode.data !== null) {
-            if(target==currentNode.data){
-                return console.log("found", currentNode)
-            }
-            else if (target<currentNode.data) {
-                prev = currentNode.data
-                if (currentNode.left !== null) {
-                    currentNode = currentNode.left
-                    curr = currentNode.data
+    validateBST() {
+        let current, qdel, arrFinal = []
+        current = this.root
+        let q = new Queue()
+        q.enqueue(current) //q=[10n]
+        console.log("enqueue", current)
+        while (q.size) {
+            qdel = q.dequeue() //[20n]
+            console.log("dequeue", qdel)
+            arrFinal.push(qdel.data)//f=[10,6,15,3,8,20]
+            console.log("dequeue", qdel.left, qdel.right)
+            if (qdel.left) {
+                console.log("left good", current, qdel.left)
+                if (qdel.left.data<current.data) {
+                    console.log("left good")
+                    q.enqueue(qdel.left)
+                } //[3n,8n,20n]
+                else{
+                    return false
                 }
-                console.log("tree right", curr, prev, closest)
-                closest = (Math.abs(curr - target) < Math.abs(prev - target) ? curr : prev);
-            } else {
-                prev = currentNode.data
-                if (currentNode.right !== null) {
-                    currentNode = currentNode.right
-                    curr = currentNode.data
-                }
-                console.log("tree left", curr, prev, closest)
-                closest = (Math.abs(curr - target) < Math.abs(prev - target) ? curr : prev);
             }
-            console.log("tree", curr, prev, closest)
+            if (qdel.right) {
+                console.log("right good", current, qdel.right)
+                if (qdel.right.data>=current.data) {
+                    console.log("right good")
+                    q.enqueue(qdel.right)
+                }else{
+                    return false
+                    
+                }
+            }
         }
-
-
+        if(q.size==0){
+            return true
+        }
     }
 }
-
 var tree = new BSTSai()
-//tree.insertManual()
-tree.insert(10)
-tree.insert(6)
-tree.insert(15)
-tree.insert(3)
-tree.insert(8)
-tree.insert(20)
+tree.insertManual()
+tree.nodeDept()
 console.log("tree", tree)
-console.log("bfs tree", tree.bfsq())
-console.log("findtheclosest", tree.findTheClosest(10, 15))
+//tree.insertBulk([3,9,20,null,null,15,7])
+
+// tree.insert(1)
+// tree.insert(null)
+// tree.insert(2)
+// tree.insert(3)
+// tree.insert(3)
+// tree.insert(8)
+// tree.insert(20)
+// tree.insert(11)
+// tree.insert(16)
+// tree.insert(1)
+// tree.insert(31)
+// tree.insert(18)
+// tree.insert(21)
+
+console.log(tree.inSaiorder(tree.root))
+//console.log("bfs tree", tree.bfsq())
+//console.log("findtheclosest", tree.findTheClosest(10, 20))
 //console.log("bfs tree", tree.printLevelOrder(tree.root))
 // console.log("pre tree", tree.preSaiorder())
 // console.log("post tree", tree.postSaiorder(tree.root))

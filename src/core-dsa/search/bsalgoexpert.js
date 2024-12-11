@@ -18,4 +18,4 @@ function bs(arr, tar) {
     return -1
 }
 
-console.log(bs([0, 1, 21, 33, 45, 61, 71, 72, 73],0))
+console.log(bs([0, 1, 21, 33, 45, 45, 61, 71, 72, 73],33))
