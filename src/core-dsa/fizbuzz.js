@@ -1,4 +1,4 @@
-function getFizzBuzz(n){
+.function getFizzBuzz(n){
     var i=1, arr=[]
     while(i<=n){
         var currStr=""

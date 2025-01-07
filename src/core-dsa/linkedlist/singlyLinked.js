@@ -350,14 +350,50 @@ class SinglyLinkedList {
             }
         }
     }
+    insertAtEnd(head, x) {
+        let current
+        if(head==null){
+            head=new LinkedNode(x)
+        }else{
+                // this.tail.nextNode=new LinkedNode(x)
+                // this.tail=this.tail.nextNode
+                // this.length++
+                current=this.head
+                while(current.nextNode){
+                    current=current.nextNode
+                }
+                if(current.nextNode==null){
+                    current.nextNode=new LinkedNode(x)
+                }
+        }
+    }
+    delet(node,h){
+        let current, prev, del, newnode
+        current=h
+        while(current){
+            if(current.node==node){
+                prev=current
+                del=current.nextNode
+                newnode=current.nextNode.nextNode
+                prev.nextNode=newnode
+                return this
+            }else{
+                current=current.nextNode
+            }
+        }
+        console.log("this", this)
+        return this
+    }
 
 
 }
 let list = new SinglyLinkedList()
-list.pushABunch([1,1,3,4,4,4,5,6,6], list)
+list.pushABunch([1,2,3,4,5], list)
 let listB = new SinglyLinkedList()
 listB.pushABunch([2, 5, 12, 14, 16], listB)
 listB.removeDuplicates()
+list.insertAtEnd(list, 6)
+list.delet(2, list.head)
 //console.log(list, listB)
 //list.merge(list, listB)
 console.log("list", list)

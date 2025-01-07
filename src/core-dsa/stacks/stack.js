@@ -47,17 +47,50 @@ class Stack {
     }
 }
 
-var stack = new Stack()//GJ sai you say pls help
-stack.push(1)
-stack.push(2)
-stack.push(3)
-stack.push(4)
-stack.push(5)
-stack.push(11)
-stack.push(12)
-stack.push(13)
-stack.push(14)
-stack.push(15)
-console.log("list", stack)
-console.log(stack.pop())
-console.log("list", stack)
+class newClass{
+    removestarts(s){
+        let stack=[]
+        let splitystr=s.split("")
+        splitystr.forEach(e => {
+            if(e!=='*'){
+                stack.push(e)
+                console.log("stack", stack)
+            }else{
+                stack.pop()
+                console.log("stack", stack)
+            }
+        });
+        return stack.join('')
+    }
+
+    paranthesis(str){
+        let splt=str.split('')
+        let stack=[]
+        for(let i=0; i<splt.length; i++){
+            stack.push(splt[i])
+            if(splt[i]==splt[i])
+            {
+                stack.pop()
+            }
+        }
+    }
+}
+
+var newclass=new newClass()
+newclass.removestarts('leet**cod*e')
+newclass.paranthesis("[]")
+
+// var stack = new Stack()//GJ sai you say pls help
+// stack.push(1)
+// stack.push(2)
+// stack.push(3)
+// stack.push(4)
+// stack.push(5)
+// stack.push(11)
+// stack.push(12)
+// stack.push(13)
+// stack.push(14)
+// stack.push(15)
+// console.log("list", stack)
+// console.log(stack.pop())
+// console.log("list", stack)

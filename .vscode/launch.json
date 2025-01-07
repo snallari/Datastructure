@@ -11,7 +11,7 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}/src/core-dsa/heaps/heaps.js"
+            "program": "${workspaceFolder}/ src/core-dsa/multiplepointers/reversevowles.js"
         }
     ]
 }

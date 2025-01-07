@@ -69,15 +69,11 @@ class BSTSai {
     }
 
     insertManual() {
-        this.root = new TNode(1)
+        this.root = new TNode(4)
         this.root.left = new TNode(2)
-        this.root.right = new TNode(3)
-        this.root.left.left = new TNode(4)
-        this.root.left.left.left = new TNode(8)
-        this.root.left.left.right = new TNode(9)
-        this.root.left.right = new TNode(5)
-        this.root.right.right = new TNode(6)
-        this.root.right.left = new TNode(7)
+        this.root.right = new TNode(7)
+        this.root.left.left = new TNode(1)
+        this.root.left.right = new TNode(3)
     }
 
     insertBulk(arr){
@@ -261,11 +257,81 @@ class BSTSai {
             return true
         }
     }
+
+    gettree(root, val){
+        let current, target
+        if(root.data==val){
+            target=root
+        }else{
+            current=root
+        while(current){
+            if(root.left.data<=val){
+            if(root.left.data==val){
+                target=root.left
+                break;
+            }else{
+                if(root.left){
+                    current=root.left
+                }
+            }
+            }else{
+               if(root.right.data==val){
+                target=root.right
+                break;
+            }else{
+                if(root.right){
+                    current=root.left
+                }
+            }
+            }
+        }
+        console.log("target", target)
+        return target?[target.data, target.left.data, target.right.data]:[]
+    }
 }
+
+
+    searchTheTree(root, val){
+        let current=root
+        let queue=new Queue()
+        let arrFinal = []
+        queue.enqueue(current)
+        console.log("entering the queue", current)
+        while(queue.size){
+            let qdel=queue.dequeue()
+            //console.log("qdel", qdel);
+            //arrFinal.push(qdel.data)
+            if(qdel.left){
+                if(qdel.left.data==val){
+                    console.log("found",qdel.left.data, qdel.left.left, qdel.left.right)
+                    arrFinal=[qdel.left.data, qdel.left.left.data, qdel.left.right.data]
+                }
+                queue.enqueue(qdel.left)
+                //console.log("add to the queue", qdel)
+                //console.log("q", queue)
+            }else{
+                if(qdel.right.data==val){
+                    console.log("found",qdel.right.data, qdel.right.left.data, qdel.right.right.data)
+                    arrFinal=[qdel.left.data,qdel.left.left.data, qdel.left.right.data]
+                }
+                queue.enqueue(qdel.right)
+               // console.log("q", queue)
+            }
+        }
+        console.log("arrfinal", arrFinal)
+        return arrFinal
+     }
+}
+
+
 var tree = new BSTSai()
 tree.insertManual()
+//var op=tree.gettree(tree.root,5)
+console.log("FOUND",tree.searchTheTree(tree.root,5))
 tree.nodeDept()
 console.log("tree", tree)
+console.log("o/p",op);
+
 //tree.insertBulk([3,9,20,null,null,15,7])
 
 // tree.insert(1)

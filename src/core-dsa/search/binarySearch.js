@@ -8,13 +8,13 @@
 TIP:left or right will be equal to middle in the last step
 */
 
-console.log(binarySearch([1,2,3,4,8], 5))
+console.log(binarySearch([2,5], 2))
 
 function binarySearch(arr, val){
     let left=0
     let right=arr.length-1
     
-    for(let i=left; i<=right; i++){
+    for(let i=left; i<right; i++){
         let mid=Math.ceil((left+right)/2)
         console.log(`left${left}, right${right} mid${mid}, ${arr[mid]}`)
         if (val == arr[mid]) {

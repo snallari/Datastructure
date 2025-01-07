@@ -1,6 +1,6 @@
 function bs(arr, tar) {
     let left = 0,
-    right = arr.length - 1, mid=0
+    right = arr.length - 1, mid=0, num
     console.log(left, right)
     for(let i=left;i<arr.length; i++){
         mid = (Math.floor((left+right) / 2))
