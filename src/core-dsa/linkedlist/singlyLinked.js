@@ -254,8 +254,8 @@ class SinglyLinkedList {
     reverseAList() {
         let prevPrev, prev, current
         current = this.head
-        this.head = this.tail
-        this.tail = current
+        // this.head = this.tail
+        // this.tail = current
         while (current) {
             prevPrev = prev
             prev = current
@@ -263,7 +263,7 @@ class SinglyLinkedList {
             prev.nextNode = prevPrev
             console.log("prevprev", prevPrev, "prev", prev, "current", current, "NEW", prev.nextNode)
         }
-        console.log("list", list)
+        console.log("list reverse", list)
     }
 
     isSorted() {
@@ -284,14 +284,7 @@ class SinglyLinkedList {
         }
     }
 
-    concatenate(a, b) {
-        let newNode
-        newNode = a.head
-        while (newNode.nextNode != null) {
-                newNode = newNode.nextNode
-        }
-            newNode.nextNode=b.head //GJ
-    }
+   
 
     merge(a,b){
         console.log("head", a.head, b.head)
@@ -384,16 +377,159 @@ class SinglyLinkedList {
         console.log("this", this)
         return this
     }
+    concatenate(a, b) {
+        let newNode
+        newNode = a.head
+        while (newNode.nextNode != null) {
+                newNode = newNode.nextNode
+        }
+            newNode.nextNode=b.head //GJ
+    }
+    odd(head){
+        let current, evenCurrent,third
+        third=head
+        current=head
+        evenCurrent=head.nextNode
 
+        while(evenCurrent.nextNode){
+            console.log("evn", evenCurrent);
+            evenCurrent=evenCurrent.nextNode.nextNode
+        }
+        while(current !== null){
+            console.log("curent", current);
+            current=current.nextNode.nextNode
+        }
+        third.nextNode=current
+        console.log("this", third)
+        return this
+    }
 
-}
+    delete(head){
+        let counter=0, prev, current,dele, newCurrent, mid, deleteVal
+        current=head
+        while(current !=null){
+            current=current.nextNode
+            counter++
+        }
+        mid=Math.ceil(counter/2)
+        console.log("counter",counter, mid)
+        current=head
+        if(counter==1){
+            head=null
+        }
+        while(current !== null && counter>1){
+            console.log("counter val-==",counter, mid+1)
+            if(mid+1==counter){
+                deleteVal=current
+            }
+            console.log("del",deleteVal)
+            if( deleteVal && current.node==deleteVal.node){
+                prev=current
+                console.log("prev", prev)
+                newCurrent=current.nextNode
+                console.log("new", newCurrent)
+                prev.nextNode=null
+                counter=counter-1
+                prev.nextNode=newCurrent.nextNode
+                console.log("new", prev.nextNode)
+            }
+            current=current.nextNode
+            counter--
+        }
+        console.log("this--", this )
+        return head
+     }
+
+     createLoop(){
+        let current, t1
+        current=this.head
+        t1=current.nextNode.nextNode
+        this.tail.nextNode=t1
+        return this
+     }
+
+     checkIfTheresLoop(){
+        let current, p, q
+        current=this.head
+        p=q=current
+        while(p && q && q.nextNode){
+            p=p.nextNode
+            q=q.nextNode.nextNode
+            console.log("p",p.node,q.node);
+            if(p.node==q.node){
+                console.log(p.node, q.node, "loop");
+                return true
+            }
+        }
+        return false
+     }
+
+     checkMiddle(){
+        let current, p, q, mid, prevP,newP
+        current=this.head
+        p=q=current
+        if(current.nextNode==null){
+            this.head=null
+            return this;
+        }
+        while(p&& q && q.nextNode){
+            prevP=p
+            p=p.nextNode
+            q=q.nextNode.nextNode
+            console.log("p",p.node,q.node);
+        }
+        mid=p.node
+        newP=p.nextNode
+        prevP.nextNode=null
+        prevP.nextNode=newP
+        return this
+     }
+
+     getMiddle(){
+        let current, p, q, mid
+        current=this.head
+        p=q=current
+        if(current.nextNode==null){
+            this.head=null
+            return this;
+        }
+        while(p&& q && q.nextNode){
+            p=p.nextNode
+            q=q.nextNode.nextNode
+            console.log("p",p.node,q.node);
+        }
+        mid=p.node
+        return mid
+     }
+
+     reverseLinkedList(head){
+        let r,q,current
+        current=head
+
+        while(current){
+            r=q
+            q=current
+            current = current.nextNode
+            //Reversing the node
+            q.nextNode=r
+           console.log("r",r, "q",q, "c", current)
+        }
+        console.log("head",q)
+        return q
+     }
+}        
 let list = new SinglyLinkedList()
-list.pushABunch([1,2,3,4,5], list)
+list.pushABunch([6,5,4,3,2,1], list)
+//list.createLoop()
+//list.checkIfTheresLoop()
+console.log("mid",list.reverseLinkedList(list.head))
 let listB = new SinglyLinkedList()
-listB.pushABunch([2, 5, 12, 14, 16], listB)
-listB.removeDuplicates()
-list.insertAtEnd(list, 6)
-list.delet(2, list.head)
+
+//listB.pushABunch([2, 5, 12, 14, 16], listB)
+//listB.removeDuplicates()h
+// list.insertAtEnd(list, 6)
+// list.delet(2, list.head)
+//console.log(list.odd(list.head))
 //console.log(list, listB)
 //list.merge(list, listB)
 console.log("list", list)
@@ -402,7 +538,8 @@ console.log("list", list)
 // list.push()
 // list.push(1)
 // list.unshift(3)
-// console.log("unshift", list)
+// congetTheTwin(head){
+console.log("unshift", list)
 // list.traverse()
 // list.sumOfNodes()
 // var search = list.search(["shr", "dad", "mum", "thatha", "amma", "sami"])
